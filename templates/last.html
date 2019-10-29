@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>SIA</title>
+	<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+
+</head>
+<body>
+	<img src="/static/MRI.png" alt="MRI">
+		<h1>Supplementary Immunization Activity Data Entry</h1>
+	<form action="{{url_for('save')}}">
+	<p>Please select the funding source
+		<select>
+		<option>(select)</option>
+		<option>M&RI</option>
+		<option>Gavi</option>
+		<option>National and local government</option>
+	</select></p>
+	<p>Comment:</p>
+	<textarea rows="4" cols="70" name="comment" form="usrform">
+</textarea><br>
+	<button>Save</button>
+</form>
+</body>
+</html>

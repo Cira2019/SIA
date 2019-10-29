@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>SIA data entry</title>
+	
+	<style>
+		
+		#sia1,#sia2,#sia3{
+			display: none;
+		}
+
+	</style>
+	<script src="{{url_for('static', filename='index.js')}}"></script>
+</head>
+<body>
+	<h1 id='hha'>Supplementary Immunization Activity data entry</h1>
+	<form action="{{url_for('add_sia_sum')}}" method='POST' id='dataform'>
+		
+		<ol>
+			<li>
+				<p>Which country were the Supplementary Immunization Activities (SIA) conducted?</p>
+				<select name="iso3" id='country'>
+					<option value="" selected disabled>Please select a country...</option>
+					{% for country in countries %}
+					<option value="{{country.iso3}}">{{country.countryname}}</option>
+					{% endfor %}
+				</select>
+			</li>
+			<li>
+				<p>What vaccines/interventions were delivered? Select all that apply</p>
+			</li>
+
+			{% for intervention in interventions %}
+			<input type="checkbox" name='interventions' value='{{intervention.id}}'> {{intervention.intervention_name}}<br>
+
+			{% endfor %}
+			<li>Start date</li>
+			<input type='date' name='start_date' value=None>
+			<li>End date</li>
+			<input type='date' name='end_date'>
+			<li>Is this a national SIA?
+			</li>
+			<input type='radio' id='sia_type1' name='sia_type' value='1' onclick='siatype()'><label for="sia_type1">Yes, it's a national SIA</label><br>
+			<input type='radio' id='sia_type2' name='sia_type' value='2' onclick='siatype()'><label for="sia_type2">No, it is a subnational SIA</label><br>
+			<input type='radio' id='sia_type3' name='sia_type' value='3' onclick='siatype()'><label for="sia_type3">It is a national SIA but only some areas/regions are covered in this phase.</label><br>			
+
+			<div id='sia1'>
+				<p>Is this a phased campaign?</p>
+				<input type='radio' id='phased_yes' name='phased' value='1' onclick='ssa()'><label for="phased_yes">Yes</label><br>
+				<input type='radio' id='phased_no' name='phased' value='0' onclick='ssa()'><label for="phased_no">No</label><br>
+				<input type='radio' id='phased_unknown' name='phased' value='0' onclick='ssa()'><label for="phased_unknown">Don't know</label><br>
+			</div>
+
+			<div id='sia2'>
+				<p>Is this SIA part of a national campaign below?</p>
+				<select name="iso3">
+					{% for country in countries %}
+					<option value="{{country.iso3}}">{{country.countryname}}</option>
+					{% endfor %}
+				</select>
+			</div>
+
+			<div id='sia3'>
+				<p>How many phases in total?</p>
+				<input type='number' name='total_phase'>
+			</div>
+
+
+
+
+			<!-- <li>What is the status of the SIA</li>
+			<input type='radio' id='sia_status1' name='status' value='completed'><label for='sia_status1'>Completed</label>
+			<input type='radio' id='sia_status2' name='status' value='planned'><label for='sia_status2'>Planned</label>
+			<input type='radio' id='sia_status3' name='status' value='onging'><label for='sia_status3'>Ongoing</label>
+			<input type='radio' id='sia_status4' name='status' value='unknown'><label for='sia_status4'>Unknown</label>
+		<li>Source of information</li>
+		<input type='text' name='soource' maxlength='500'><br>
+		<li>Comment</li>
+		<input type='text' name='comment' maxlength="500"><br> -->
+	</ol>
+	<button>Next</button>
+</form>
+
+<p id='previousSIA'>
+</p>
+
+<button onclick="querySIA()">Check SIA</button>
+<button onclick='test()'>Test</button>
+
+</body>
+</html>

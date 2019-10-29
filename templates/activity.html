@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>
+		SIA
+	</title>
+	<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+	<img src="/static/MRI.png" alt="MRI">
+	<h1>Supplementary Immunization Activity Data Entry</h1>
+	<form action="{{url_for('activitycont')}}" method='POST' id='dataform'>
+
+		<p>Select your country	
+			<select name="iso3" id='country'>
+				<option value="" selected disabled>Please select a country...</option>
+				{% for country in countries %}
+				<option value="{{country.iso3}}">{{country.countryname}}</option>
+				{% endfor %}
+			</select></p>
+			
+				<p>Status
+					<select name='status>'>
+						<option>(select)</option>
+						<option value='Completed'>Completed</option>
+						<option value='Ongoing'>Ongoing</option>
+						<option value='Planned'>Planned</option>
+					</select>
+				</p>
+				<button>Next</button>
+			</form>
+		</body>
+		</html>
+

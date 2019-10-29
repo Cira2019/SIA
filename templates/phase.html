@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>SIA</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+
+</head>
+<body>
+    <img src="/static/MRI.png" alt="MRI">
+        <h1>Supplementary Immunization Activity Data Entry</h1>
+        <h2 id='phaseNum'></h2>
+        <form id="phase_date"><p>Start date
+                <input type='date' name='start_date' value=None>
+                End date
+                <input type='date' name='end_date'></p></form>
+
+    <form id="geography" action="{{url_for('last')}}">
+
+    <div class="summarydata" id="duplicater">   
+    <p>Select the vaccine, medicine or health service
+        <select>
+            <option>(select)</option>
+            <option>Measles vaccine</option>
+            <option>Measles and rubella vaccine</option>
+            <option>bOPV</option>
+            <option>mOPV2</option>
+            <option>Vitamin A</option>
+            <option>Albendazole</option>
+            <option>Insecticide treated bednet</option> 
+        </select></p>
+
+        <p>Please enter the summary information for this vaccine or medicine</p>
+    <table>
+            <tr>
+                <th>Area/region</th>
+                <th>Target age group</th>
+                <th>Total target population</th>
+                <th>Population reached</th>
+                <th>Administrative coverage</th>
+                <th>#(and %) of districts with >95% admin coverage</th>
+                <th>Survey coverage</th>
+                <th>Wastage rate</th>
+                <th>No.severe AEFI</th>
+                <th>No.severe AEFI due to SIA</th>
+            </tr>
+            <tr>
+                <td><input type='text'></td>
+                <td><input type='text'></td>
+                <td><input type='number'></td>
+                <td><input type='number'></td>
+                <td><input type='number'></td>
+                <td><input type='number'></td>
+                <td><input type='number'></td>
+                <td><input type='number'></td>
+                <td><input type='number'></td>
+                <td><input type='number'></td>
+            </tr>
+        </table>
+    <p>Upload subnational data using <u>the template</u>
+    <input type='button' value='Upload' onclick='openWindow()'> </p>
+    </div>
+
+</form>
+
+
+<input type='button' value='Add another vaccine/medicine' onClick='duplicate()'> <br>
+
+<input type='hidden' id="Next_phase" value='Next Phase' onclick="nextPhase()"><br>
+
+<input type='button' value='Next' onclick="location.href='last'">
+
+
+<script>    
+
+var i = 0;
+var original = document.getElementById('duplicater');
+
+
+function duplicate() {
+    //original.innerHTML="Here it is!"
+    var clone = original.cloneNode(true); // "deep" clone
+    clone.id = "duplicater" + ++i;
+    // or clone.id = ""; if the divs don't need an ID
+    original.parentNode.appendChild(clone);
+}
+
+function openWindow(){
+     window.open("subnational");
+}
+
+var total_phase = '{{total_phase}}';
+var nPhase=1
+
+function Phase1() {
+    if (total_phase>0){
+    document.getElementById('phaseNum').innerHTML="Phase 1";
+    document.getElementById('Next_phase').setAttribute("type","submit");
+    }
+}
+
+window.onload=Phase1;
+
+
+
+function nextPhase(){
+    if (nPhase<total_phase){
+        nPhase=nPhase+1;
+        document.getElementById('phaseNum').innerHTML="Phase "+nPhase;
+    }
+    var geography = document.getElementById("geography");
+    var duplicater = document.getElementById("duplicater");
+    var throwawayNode = geography.removeChild(duplicater);
+    while (geography.firstChild) {
+        geography.removeChild(geography.firstChild);
+    }
+    geography.appendChild(throwawayNode);
+    // if (nPhase=total_phase+1){
+    //     document.getElementById('Next_phase').setAttribute("type","hidden");
+    // }
+}
+
+
+</script>
+</body>
+
+
+</html>

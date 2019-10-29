@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Enter details of the SIA</title>
+	<script>    var total_phase = '{{total_phase}}';</script>
+</head>
+<body>
+	<form>
+		<table>
+			<tr>
+				<th>Area/region</th>
+				<th>>Target age group</th>
+				<th>Total target population</th>
+				<th>Population reached</th>
+				<th>Administrative coverage</th>
+				<th>#(and %) of district with >95% admin coverage</th>
+				<th>Survey coverage</th>
+				<th>Wastage rate</th>
+				<th>No.severe AEFI</th>
+				<th>No.severe AEFI due to SIA</th>
+			</tr>
+			<tr>
+				<th>Total</th>
+				<td><input type='text'></td>
+				<td><input type='number'></td>
+				<td><input type='number'></td>
+				<td><input type='number'></td>
+				<td><input type='number'></td>
+				<td><input type='number'></td>
+				<td><input type='number'></td>
+				<td><input type='number'></td>
+				<td><input type='number'></td>
+			</tr>
+
+			{% for i in phases %}
+			<tr>
+				<th>Phase {{i}}</th>
+				<td><input type='text'></td>
+				<td><input type='number'></td>
+				<td><input type='number'></td>
+				<td><input type='number'></td>
+				<td><input type='number'></td>
+				<td><input type='number'></td>
+				<td><input type='number'></td>
+				<td><input type='number'></td>
+				<td><input type='number'></td>
+			</tr>
+			{% endfor %}
+
+		</table>
+	</form>
+
+	<form enctype="multipart/form-data" action='{{url_for("upload")}}' method='POST'>
+		<p>Upload subnational coverage by province/state, or by district.</p>
+		<input type="file"
+		id="subnational" name="subnational"
+		accept=".csv, .xls,.xlsx">
+		<input type='submit' value='upload'>
+	</form>
+
+
+	<form method='POST' enctype="multipart/form-data" action="/upload">
+		<p>Upload subnational coverage by province/state, or by district.</p>
+		<input type="file"
+		id="subnational" name="file"
+		accept=".csv, .xls,.xlsx">
+		<input type='submit' value='upload'>
+		</form>
+</body>
+</html>
+</body>
+</html>
+
+
+

@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Enter details of the SIA</title>
+</head>
+<body>
+<form>
+	<table>
+		<th>
+			<td>Area/region</td>
+			<td>Target age</td>
+			<td>Total target population</td>
+			<td>Population reached</td>
+			<td>Administrative coverage</td>
+			<td>#(and %) of district with >95% admin coverage</td>
+			<td>Survey coverage</td>
+			<td>Wastage rate</td>
+			<td>No.severe AEFI</td>
+			<td>No.severe AEFI due to SIA</td>
+		</th>
+		<input type='number' name='siasum_id' value='{{siasum_id}}'>
+		<li>What is the target age group?</li>
+		<input type='text' name='target_age_group' maxlength="50">
+		<label for='target_pop_discription'>Description(optional):</label>
+		<input type='text' name='target_pop_discription' maxlength="100" id='target_pop_discription'>
+		<li>What is the total number of the target population?</li>
+		<input type='number' name='target_population'><br>
+		<li>How many persons are reached in this SIA?</li>
+		<input type='number' name='target_population_reached'><br>
+		<li>What is the administrative coverage?</li>
+		<input type='number' name='percent_reached'><br>
+		<li>What is the administrative coverage?</li>
+		<input type='number' name='percent_reached'><br>
+		<li>What is the survey coverage?</li>
+		<input type='number' name='survey_coverage'><br>
+</form>
+</body>
+</html>

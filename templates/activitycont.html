@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>
+		SIA
+	</title>
+</head>
+<body>
+		<img src="/static/MRI.png" alt="MRI">
+		<h1>Supplementary Immunization Activity Data Entry</h1>
+		<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+	<form action="{{url_for('phase')}}" method='POST' id='dataform'>
+	<p>
+		Is this an update to the following campaign?
+		<select>
+			<option value="">No</option>
+			<option>Afghanistan, May 2018, National, OPV</option>
+			<option>Afghanistan, April 2016, National, Measles</option>
+		</select>
+	</p>
+	<p>Is this a national campaign?</p>
+	<input type='radio' id='sia_type1' name='sia_type' value='1' onclick='siatype()'><label for="sia_type1">Yes, it's a national SIA</label><br>
+	<input type='radio' id='sia_type2' name='sia_type' value='2' onclick='siatype()'><label for="sia_type2">No, it is a subnational SIA</label><br>
+	<input type='radio' id='sia_type3' name='sia_type' value='3' onclick='siatype()'><label for="sia_type3">It is a national SIA but data are only available for some areas of the country</label><br>
+
+	<p>Is this a phased campaign?</p>
+	<input type='radio' id='phased_yes' name='phased' value='1' ><label for="phased_yes">Yes. </label>Total number of phases:
+		<input type='number' name='total_phase'><br>
+	<input type='radio' id='phased_no' name='phased' value='0' ><label for="phased_no">No</label><br>
+	<input type='radio' id='phased_unknown' name='phased' value='0'><label for="phased_unknown">Don't know</label><br>
+	<button>Next</button>
+</form>
+
+</body>
+</html>
